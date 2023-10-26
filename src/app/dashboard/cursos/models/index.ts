@@ -3,6 +3,5 @@ export interface Curso{
     titulo: string;
     descripcion: string;
     duracionHoras: number;
-    instructor: string;
+    instructor: string
   }
-

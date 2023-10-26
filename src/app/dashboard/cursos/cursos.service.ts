@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Curso } from './models';
-import { Observable, of } from 'rxjs';
+import { Observable, of, interval ,map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +48,20 @@ export class CursosService {
       }
     ]);
   }
+
+  getCounter(): Observable<number> {
+    return interval(1000);
+  }
+
+  getHora(): Observable<string> {
+    return interval(1000).pipe(
+      map(() => {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
+      }))
+  }
+
 }
